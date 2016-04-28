@@ -1,0 +1,30 @@
+<template name="viewUsers">
+
+  <div class="container-medium">
+    <div class="row">
+      <div class="col-md-12">
+
+        <table class="table table-responsive table-break-medium">
+          <tbody>
+            <tr class="text-small">
+              <th>Name</th>
+              <th>ID</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+            {{ #each users }}
+            <tr>
+              <td data-th="First column"><a href="#">{{firstName}} {{lastName}}</a></td>
+              <td data-th="Second column">{{ _id }}</td>
+              <td data-th="Third column">{{ email }}</td>
+              <td data-th="Fouth column"><a href="#">delete?</a></td>
+            </tr>
+            {{ /each }}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</template>

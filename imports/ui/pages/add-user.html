@@ -1,0 +1,18 @@
+<template name="addUser">
+
+  <div class="container-medium">
+    <div class="row">
+      <div class="col-md-12">
+
+        <form>
+          {{ #each fields }}
+            {{ > labeledInput }}
+          {{ /each }}
+          <input class="button button-primary button-big block-mobile" type="submit" value="Add User">
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</template>

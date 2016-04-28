@@ -1,0 +1,10 @@
+.hide {
+  display: none;
+}
+
+.input.error, .select.error, .textarea.error {
+  margin-bottom: 20px;
+}
+
+
+

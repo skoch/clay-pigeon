@@ -1,0 +1,14 @@
+<template name="header">
+  <header>
+    <h1 class="text-huge text-gray align-center">{{ pageName }}</h1>
+    <div class="tabs">
+      <a href="add-user" title="Add User" class="tab add-user">Add User</a>
+      <a href="#" title="Add Event" class="tab add-event">Add Event</a>
+      <a href="#" title="Add Wine" class="tab add-wine">Add Wine</a>
+      <a href="view-users" title="View Users" class="tab view-users">View Users</a>
+      <a href="#" title="View Events" class="tab view-events">View Events</a>
+      <a href="#" title="View Wine" class="tab view-wine">View Wine</a>
+      <a href="#" title="Login" class="tab">{{ > loginButtons }}</a>
+    </div>
+  </header>
+</template>
