@@ -1,0 +1,10 @@
+<template name="addWine">
+
+  <form>
+    {{ #each fields }}
+      {{ > labeledInput }}
+    {{ /each }}
+    <input class="button button-primary button-big block-mobile" type="submit" value="Add Wine">
+  </form>
+
+</template>

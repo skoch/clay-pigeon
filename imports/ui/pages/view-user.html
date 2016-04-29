@@ -1,3 +1,43 @@
 <template name="viewUser">
-  {{ firstName }}
+
+  <form>
+
+    <input type="hidden" value="{{ user._id }}">
+
+    <label class="label" for="first-name">First Name</label>
+    <div class="input full-width">
+      <input id="first-name" name="first-name" type="text" value="{{ user.firstName }}">
+    </div>
+    <label class="label" for="last-name">Last Name</label>
+    <div class="input full-width">
+      <input id="last-name" name="last-name" type="text" value="{{ user.lastName }}">
+    </div>
+    <label class="label" for="address">Address</label>
+    <div class="input full-width">
+      <input id="address" name="address" type="text" value="{{ user.address }}">
+    </div>
+    <label class="label" for="city">City</label>
+    <div class="input full-width">
+      <input id="city" name="city" type="text" value="{{ user.city }}">
+    </div>
+    <label class="label" for="state">State</label>
+    <div class="input full-width">
+      <input id="state" name="state" type="text" value="{{ user.state }}">
+    </div>
+    <label class="label" for="zip">Zip</label>
+    <div class="input full-width">
+      <input id="zip" name="zip" type="text" value="{{ user.zip }}">
+    </div>
+    <label class="label" for="phone">Phone</label>
+    <div class="input full-width">
+      <input id="phone" name="phone" type="text" value="{{ user.phone }}">
+    </div>
+    <label class="label" for="email">Email</label>
+    <div class="input full-width">
+      <input id="email" name="email" type="text" value="{{ user.email }}">
+    </div>
+
+    <input class="button button-primary button-big block-mobile" type="submit" value="Update User">
+  </form>
+
 </template>

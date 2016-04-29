@@ -1,21 +1,21 @@
-import { Users } from '../../api/users.js';
+import { Wine } from '../../api/wine.js';
 
-import './view-user.html';
+import './view-wine.html';
 
-Template.viewUser.onCreated(function viewUserOnCreated() {
-  console.log( "viewUser onCreated" );
+Template.viewWine.onCreated(function viewWineOnCreated() {
+  console.log( "viewWine onCreated" );
 });
 
-Template.viewUser.onRendered(function viewUserOnRendered() {
-  console.log( "viewUser onRendered" );
+Template.viewWine.onRendered(function viewWineOnRendered() {
+  console.log( "viewWine onRendered" );
   Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 });
 
-Template.viewUser.helpers({
+Template.viewWine.helpers({
 
 });
 
-Template.viewUser.events({
+Template.viewWine.events({
   'submit form'( event )
   {
     var isError = false;
@@ -23,7 +23,7 @@ Template.viewUser.events({
 
     const instance = Template.instance();
 
-    var userData = [];
+    var wineData = [];
     $( 'input[type=text]' ).each(function() {
 
       let input = $( this );
@@ -38,15 +38,15 @@ Template.viewUser.events({
         isError = true;
       }else
       {
-        userData.push( input.val() );
+        wineData.push( input.val() );
       }
     });
 
     if( ! isError )
     {
       // Update user
-      var userId = $( 'input[type=hidden]' ).val();
-      Meteor.call( 'wineclub-users.update', userId, userData );
+      var wineId = $( 'input[type=hidden]' ).val();
+      Meteor.call( 'wine.update', wineId, wineData );
     }
 
   },

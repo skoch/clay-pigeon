@@ -1,18 +1,22 @@
-<template name="viewUsers">
+<template name="viewWines">
 
   <table class="table table-responsive table-break-medium">
     <tbody>
       <tr class="text-small">
         <th>Name</th>
         <!-- <th>ID</th> -->
-        <th>Email</th>
+        <th>Vintage</th>
+        <th>Style</th>
+        <th>Price</th>
         <th></th>
       </tr>
-      {{ #each users }}
+      {{ #each wine }}
       <tr>
-        <td data-th="Name"><a href="/u/{{ _id }}">{{ firstName }} {{ lastName }}</a></td>
+        <td data-th="Name"><a href="/w/{{ _id }}">{{ name }}</a></td>
         <!-- <td data-th="Second column">{{ _id }}</td> -->
-        <td data-th="Email">{{ email }}</td>
+        <td data-th="Vintage">{{ vintage }}</td>
+        <td data-th="Style">{{ style }}</td>
+        <td data-th="Bottle Price">${{ bottlePrice }}</td>
         <td data-th="Delete Button"><a href="#" class="delete" data-id="{{ _id }}">delete</a></td>
       </tr>
       {{ /each }}

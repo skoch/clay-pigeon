@@ -4,6 +4,12 @@ import { Mongo } from 'meteor/mongo';
 
 export const Users = new Mongo.Collection( 'wineclub-users' );
 
+UsersIndex = new EasySearch.Index({
+  collection: Users,
+  fields: ['firstName', 'lastName'],
+  engine: new EasySearch.Minimongo()
+});
+
 if( Meteor.isServer )
 {
   // This code only runs on the server
@@ -25,11 +31,11 @@ Meteor.methods({
     console.log( "wineclub-users.insert", data );
     // check( text, String );
 
-    // Make sure the user is logged in before inserting a task
-    if( ! Meteor.userId() )
-    {
-      throw new Meteor.Error( 'not-authorized' );
-    }
+    // Make sure the user is logged in before inserting a user
+    // if( ! Meteor.userId() )
+    // {
+    //   throw new Meteor.Error( 'not-authorized' );
+    // }
 
     Users.insert({
       firstName: data[0].value,
@@ -45,20 +51,83 @@ Meteor.methods({
     });
   },
 
-  // 'wineclub-users.remove'( userId )
-  // {
-  //   console.log( "attempting to remove", userId );
-  //   // check( userId, String );
+  'wineclub-users.update'( userId, userData )
+  {
+    console.log( "userId, userData", userId, userData );
+    // check( taskId, String );
+    // check( setToPrivate, Boolean );
 
-  //   // extra security
-  //   // const user = Users.findOne( userId );
-  //   // if( user.private && user.owner !== Meteor.userId() )
-  //   // {
-  //   //   // If the user is private, make sure only the owner can delete it
-  //   //   throw new Meteor.Error( 'not-authorized' );
-  //   // }
+    // const user = Users.findOne( userId );
 
-  //   Users.remove( userId );
-  // },
+    // Make sure the user is logged in before inserting a user
+    // if( ! Meteor.userId() )
+    // {
+    //   throw new Meteor.Error( 'not-authorized' );
+    // }
+
+    Users.update( userId, {
+      $set: {
+        firstName: userData[0],
+        lastName: userData[1],
+        address: userData[2],
+        city: userData[3],
+        state: userData[4],
+        zip: userData[5],
+        phone: userData[6],
+        email: userData[7],
+        updatedAt: new Date(),
+      }
+    });
+  },
+
+  'wineclub-users.remove'( userId )
+  {
+    console.log( "attempting to remove", userId );
+    // check( userId, String );
+
+    // extra security
+    // const user = Users.findOne( userId );
+    // if( user.private && user.owner !== Meteor.userId() )
+    // {
+    //   // If the user is private, make sure only the owner can delete it
+    //   throw new Meteor.Error( 'not-authorized' );
+    // }
+
+    Users.remove( userId );
+  },
+
+  'wineclub-users.addToEvent'( userId, eventId )
+  {
+    console.log( "wineclub-users.addToEvent", userId, eventId );
+    // check( taskId, String );
+    // check( setToPrivate, Boolean );
+
+    const user = Users.findOne( userId );
+    console.log( "user", user );
+
+    // // Make sure only the task owner can make a task private
+    // if( user.owner !== Meteor.userId() )
+    // {
+    //   throw new Meteor.Error( 'not-authorized' );
+    // }
+
+    // Users.update( taskId, { $addToSet: { events: eventId } } );
+  },
+
+  'wineclub-users.removeFromEvent'( userId, eventId )
+  {
+    // check( taskId, String );
+    // check( setToPrivate, Boolean );
+
+    const user = Users.findOne( userId );
+
+    // // Make sure only the task owner can make a task private
+    // if( user.owner !== Meteor.userId() )
+    // {
+    //   throw new Meteor.Error( 'not-authorized' );
+    // }
+
+    Users.update( taskId, { $pull: { events: eventId } } );
+  },
 
 });

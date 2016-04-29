@@ -1,0 +1,27 @@
+<template name="viewWine">
+
+  <form>
+
+    <input type="hidden" value="{{ wine._id }}">
+
+    <label class="label" for="name">Name</label>
+    <div class="input full-width">
+      <input id="name" name="name" type="text" value="{{ wine.name }}">
+    </div>
+    <label class="label" for="vintage">Vintage</label>
+    <div class="input full-width">
+      <input id="vintage" name="vintage" type="text" value="{{ wine.vintage }}">
+    </div>
+    <label class="label" for="style">Style</label>
+    <div class="input full-width">
+      <input id="style" name="style" type="text" value="{{ wine.style }}">
+    </div>
+    <label class="label" for="bottlePrice">Bottle Price</label>
+    <div class="input full-width">
+      <input id="bottlePrice" name="bottlePrice" type="text" value="{{ wine.bottlePrice }}">
+    </div>
+
+    <input class="button button-primary button-big block-mobile" type="submit" value="Update Wine">
+  </form>
+
+</template>

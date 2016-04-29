@@ -9,6 +9,12 @@ Template.registerHelper( 'updateNav', ( routeName ) => {
   $( '.' + routeName ).addClass( 'active' );
 });
 
+Template.registerHelper( 'arrayify',( obj ) => {
+  result = [];
+  for( var key in obj ) result.push( { name:key, value:obj[key] } );
+  return result;
+});
+
 import '/imports/startup/accounts-config.js';
 import '/imports/startup/client';
 // import { Template } from 'meteor/templating';
