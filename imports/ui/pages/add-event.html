@@ -5,37 +5,10 @@
       {{ > labeledInput }}
     {{ /each }}
 
-    <h2 class="text-big">Attendees</h2>
-
-    <div class="input full-width autosuggest-component">
-    {{ > EasySearch.Input index=usersIndex }}
+    <div>
+      <input class="button button-primary button-big block-mobile" type="submit" value="Add Event">
     </div>
 
-    <!-- <ul> -->
-    {{ #EasySearch.Each index=usersIndex }}
-      <!-- <li>{{ firstName }} {{ lastName }}</li> -->
-      <button class="add-attendee button button-small button-red block-mobile" data-id="{{ _id }}">{{ firstName }} {{ lastName }}</button>
-    {{ /EasySearch.Each }}
-    <!-- </ul> -->
-    <!-- <table class="table table-responsive table-break-medium">
-      <tbody>
-        <tr class="text-small">
-          <th>Name</th>
-          <th>Email</th>
-          <th></th>
-        </tr>
-        {{ #each attendees }}
-        <tr>
-          <td data-th="Name"><a href="/u/{{ _id }}">{{ firstName }} {{ lastName }}</a></td>
-          <td data-th="Email">{{ email }}</td>
-          <td data-th="Remove Button"><a href="#" class="remove" data-id="{{ _id }}">remove</a></td>
-        </tr>
-        {{ /each }}
-      </tbody>
-    </table> -->
-
-    <!-- <div><button class="button block-mobile add-attendee">Add Attendee</button></div> -->
-    <div><input class="button button-primary button-big block-mobile" type="submit" value="Add Event"></div>
   </form>
 
 </template>

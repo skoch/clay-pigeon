@@ -30,14 +30,13 @@ Meteor.methods({
     //   throw new Meteor.Error( 'not-authorized' );
     // }
 
-    // Events.insert({
-    //   name: data[0].value,
-    //   vintage: data[1].value,
-    //   style: data[2].value,
-    //   bottlePrice: data[3].value,
-    //   createdAt: new Date(),
-    //   owner: Meteor.userId(),
-    // });
+    return Events.insert({
+      name: data[0].value,
+      date: data[1].value,
+      description: data[2].value,
+      createdAt: new Date(),
+      owner: Meteor.userId(),
+    });
   },
 
   'events.update'( eventId, eventData )
@@ -78,7 +77,7 @@ Meteor.methods({
     //   throw new Meteor.Error( 'not-authorized' );
     // }
 
-    // Events.remove( eventId );
+    Events.remove( eventId );
   },
 
 });
