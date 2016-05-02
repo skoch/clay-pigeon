@@ -1,0 +1,40 @@
+<template name="viewEvent">
+
+  <form>
+
+    <input type="hidden" value="{{ event._id }}">
+
+    <label class="label" for="name">Name</label>
+    <div class="input full-width">
+      <input id="name" name="name" type="text" value="{{ event.name }}">
+    </div>
+    <label class="label" for="date">Date</label>
+    <div class="input full-width">
+      <input id="date" name="date" type="text" value="{{ event.date }}">
+    </div>
+    <label class="label" for="description">Description</label>
+    <div class="input full-width">
+      <input id="description" name="description" type="text" value="{{ event.description }}">
+    </div>
+
+    <input class="button button-primary button-big block-mobile" type="submit" value="Update Event Details">
+
+    <h2 class="text-big">Attendees</h2>
+
+    {{ #each attendees }}
+    <button class="remove-attendee button button-small button-green block-mobile" data-id="{{ _id }}">{{ firstName }} {{ lastName }}</button>
+    {{ /each }}
+
+    <label class="label">Filter Users (First/Last Name)</label>
+    <div class="input full-width autosuggest-component">
+      {{ > EasySearch.Input index=usersIndex }}
+    </div>
+
+    <p>Click users to add them to this event.</p>
+    {{ #EasySearch.Each index=usersIndex }}
+      <button class="add-attendee button button-small block-mobile" data-id="{{ _id }}">{{ firstName }} {{ lastName }}</button>
+    {{ /EasySearch.Each }}
+
+  </form>
+
+</template>
