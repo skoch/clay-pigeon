@@ -70,7 +70,7 @@ import '../../ui/pages/page-not-found.js';
 FlowRouter.route('/', {
   name: 'home',
   triggersEnter( context, redirect ){
-    redirect( '/view-users' );
+    redirect( '/view-wines' );
   },
   // triggersEnter: [function( context, redirect ) {
   //   redirect( '/view-users' );
