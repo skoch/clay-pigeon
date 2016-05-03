@@ -17,6 +17,7 @@ Template.registerHelper( 'arrayify',( obj ) => {
 
 import '/imports/startup/accounts-config.js';
 import '/imports/startup/client';
+
 // import { Template } from 'meteor/templating';
 // import { ReactiveVar } from 'meteor/reactive-var';
 

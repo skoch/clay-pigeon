@@ -2,6 +2,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { Users } from '../../api/users.js';
 import { Wine } from '../../api/wine.js';
+import { Events } from '../../api/events.js';
 
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
@@ -14,6 +15,8 @@ import '../../ui/pages/add-wine.js';
 import '../../ui/pages/view-wine.js';
 import '../../ui/pages/view-wines.js';
 import '../../ui/pages/add-event.js';
+import '../../ui/pages/view-event.js';
+import '../../ui/pages/view-events.js';
 
 // 404
 import '../../ui/pages/page-not-found.js';
@@ -105,7 +108,7 @@ FlowRouter.route('/u/:_id', {
   name: 'view-user',
   triggersEnter( context, redirect, stop ) {
     var user = Users.findOne( context.params._id );
-    // console.log( "user", user );
+    console.log( "user", user );
     if( ! user )
     {
       redirect( '/view-users' );
@@ -157,6 +160,33 @@ FlowRouter.route('/add-event', {
     // var users = Users.find();
     BlazeLayout.render( 'appBody', { top: 'header', main: 'addEvent' } );
   },
+});
+
+FlowRouter.route('/view-events', {
+  name: 'view-events',
+  action() {
+    BlazeLayout.render( 'appBody', { top: 'header', main: 'viewEvents' } );
+  },
+});
+
+FlowRouter.route('/e/:_id', {
+  name: 'view-event',
+  triggersEnter( context, redirect, stop ) {
+    var event = Events.findOne( context.params._id );
+    if( ! event )
+    {
+      redirect( '/view-events' );
+    }else
+    {
+      BlazeLayout.render( 'appBody', { top: 'header', main: 'viewEvent', event: event } );
+      stop();
+    }
+  },
+  triggersExit( context, redirect ) {
+    // hack to remove the Chosen dropdown from the DOM
+    // $( '#user-list' ).chosen( 'destroy' );
+    $( '#user_list_chzn' ).remove();
+  }
 });
 
 FlowRouter.notFound = {

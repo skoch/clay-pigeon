@@ -1,0 +1,23 @@
+<template name="viewEvents">
+
+  <table class="table table-responsive table-break-medium">
+    <tbody>
+      <tr class="text-small">
+        <th>Name</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+      {{ #each events }}
+      <tr>
+        <td data-th="Name"><a href="/e/{{ _id }}">{{ name }}</a></td>
+        <td data-th="Date">{{ date }}</td>
+        <td data-th="Description">{{ description }}</td>
+        <!-- delete-event/{{ _id }} -->
+        <td data-th="Delete Button"><a href="#" class="delete" data-id="{{ _id }}">delete</a></td>
+      </tr>
+      {{ /each }}
+    </tbody>
+  </table>
+
+</template>

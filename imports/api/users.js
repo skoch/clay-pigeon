@@ -98,12 +98,11 @@ Meteor.methods({
 
   'wineclub-users.addToEvent'( userId, eventId )
   {
-    console.log( "wineclub-users.addToEvent", userId, eventId );
+    // console.log( "wineclub-users.addToEvent", userId, eventId );
     // check( taskId, String );
     // check( setToPrivate, Boolean );
 
-    const user = Users.findOne( userId );
-    console.log( "user", user );
+    // const user = Users.findOne( userId );
 
     // // Make sure only the task owner can make a task private
     // if( user.owner !== Meteor.userId() )
@@ -111,7 +110,7 @@ Meteor.methods({
     //   throw new Meteor.Error( 'not-authorized' );
     // }
 
-    // Users.update( taskId, { $addToSet: { events: eventId } } );
+    Users.update( userId, { $addToSet: { events: eventId } } );
   },
 
   'wineclub-users.removeFromEvent'( userId, eventId )
@@ -119,7 +118,7 @@ Meteor.methods({
     // check( taskId, String );
     // check( setToPrivate, Boolean );
 
-    const user = Users.findOne( userId );
+    // const user = Users.findOne( userId );
 
     // // Make sure only the task owner can make a task private
     // if( user.owner !== Meteor.userId() )
@@ -127,7 +126,7 @@ Meteor.methods({
     //   throw new Meteor.Error( 'not-authorized' );
     // }
 
-    Users.update( taskId, { $pull: { events: eventId } } );
+    Users.update( userId, { $pull: { events: eventId } } );
   },
 
 });
