@@ -4,9 +4,9 @@ import '../labeled-input.js';
 import './add-event.html';
 
 const eventFields = [
-  { id: "event-name", label: "Event Name", value: "Test Event" },
-  { id: "date", label: "Date", value: "January 10, 2017" },
-  { id: "description", label: "Description", value: "Birthday Mother Fucker" },
+  { id: "event-name", label: "Event Name" },
+  { id: "date", label: "Date" },
+  { id: "description", label: "Description" },
 ];
 
 Template.addEvent.onCreated(function addEventOnCreated() {
@@ -15,7 +15,7 @@ Template.addEvent.onCreated(function addEventOnCreated() {
 
 Template.addEvent.onRendered(function addEventOnRendered() {
   console.log( "addEvent onRendered" );
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 });
 
 Template.addEvent.helpers({
@@ -40,13 +40,13 @@ Template.addEvent.events({
     $.each( eventFields, function( index, val )
     {
       let input = $( '#' + val.id );
-      let inputDiv = input.parent( '.input' );
-      inputDiv.removeClass( 'error' );
+      let formGroup = input.parent( '.form-group' );
+      formGroup.removeClass( 'has-error' );
 
       if( input.val() == '' )
       {
         console.log( "error at", input );
-        inputDiv.addClass( 'error' );
+        formGroup.addClass( 'has-error' );
 
         isError = true;
       }else

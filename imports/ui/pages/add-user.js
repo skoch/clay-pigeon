@@ -28,7 +28,7 @@ Template.addUser.onCreated(function addUserOnCreated() {
 
 Template.addUser.onRendered(function addUserOnRendered() {
   console.log( "addUser onRendered" );
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 });
 
 Template.addUser.helpers({
@@ -58,15 +58,15 @@ Template.addUser.events({
     $.each( userFields, function( index, val )
     {
       let input = $( '#' + val.id );
-      let inputDiv = input.parent( '.input' );
-      inputDiv.removeClass( 'error' );
-      // inputDiv.next( '.text-error' ).addClass( 'hide' );
+      let formGroup = input.parent( '.form-group' );
+      formGroup.removeClass( 'has-error' );
+      // formGroup.next( '.text-error' ).addClass( 'hide' );
 
       if( input.val() == '' )
       {
         console.log( "error at", input );
-        inputDiv.addClass( 'error' );
-        // inputDiv.next( '.text-error' ).removeClass( 'hide' ).html( 'WTF' );
+        formGroup.addClass( 'has-error' );
+        // formGroup.next( '.text-error' ).removeClass( 'hide' ).html( 'WTF' );
 
         isError = true;
         // return false;

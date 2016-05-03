@@ -9,7 +9,7 @@ Template.viewUsers.onCreated(function viewUsersOnCreated() {
 Template.viewUsers.onRendered(function viewUsersOnRendered() {
   console.log( "viewUsers onRendered" );
 
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 
 });
 

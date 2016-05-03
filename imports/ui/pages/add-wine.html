@@ -1,10 +1,13 @@
 <template name="addWine">
 
+  <h2>Add Wine</h2>
+
   <form>
     {{ #each fields }}
       {{ > labeledInput }}
     {{ /each }}
-    <input class="button button-primary button-big block-mobile" type="submit" value="Add Wine">
+
+    <button type="submit" class="btn btn-primary">Add Wine</button>
   </form>
 
 </template>
