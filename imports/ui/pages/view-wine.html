@@ -1,27 +1,33 @@
 <template name="viewWine">
 
+  <h2>Wine Details</h2>
+
   <form>
 
     <input type="hidden" value="{{ wine._id }}">
 
-    <label class="label" for="name">Name</label>
-    <div class="input full-width">
-      <input id="name" name="name" type="text" value="{{ wine.name }}">
-    </div>
-    <label class="label" for="vintage">Vintage</label>
-    <div class="input full-width">
-      <input id="vintage" name="vintage" type="text" value="{{ wine.vintage }}">
-    </div>
-    <label class="label" for="style">Style</label>
-    <div class="input full-width">
-      <input id="style" name="style" type="text" value="{{ wine.style }}">
-    </div>
-    <label class="label" for="bottlePrice">Bottle Price</label>
-    <div class="input full-width">
-      <input id="bottlePrice" name="bottlePrice" type="text" value="{{ wine.bottlePrice }}">
+    <div class="form-group">
+      <label class="label" for="name">Name</label>
+      <input id="name" name="name" type="text" value="{{ wine.name }}" class="form-control">
     </div>
 
-    <input class="button button-primary button-big block-mobile" type="submit" value="Update Wine">
+    <div class="form-group">
+      <label class="label" for="vintage">Vintage</label>
+      <input id="vintage" name="vintage" type="text" value="{{ wine.vintage }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label class="label" for="style">Style</label>
+      <input id="style" name="style" type="text" value="{{ wine.style }}" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label class="label" for="bottlePrice">Bottle Price</label>
+      <input id="bottlePrice" name="bottlePrice" type="text" value="{{ wine.bottlePrice }}" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Wine Details</button>
+
   </form>
 
 </template>

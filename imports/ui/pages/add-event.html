@@ -1,13 +1,13 @@
 <template name="addEvent">
 
+  <h2>Add Event</h2>
+
   <form>
     {{ #each fields }}
       {{ > labeledInput }}
     {{ /each }}
 
-    <div>
-      <input class="button button-primary button-big block-mobile" type="submit" value="Add Event">
-    </div>
+    <button type="submit" class="btn btn-primary">Add Event</button>
 
   </form>
 

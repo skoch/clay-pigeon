@@ -4,9 +4,9 @@ import '../labeled-input.js';
 import './add-event.html';
 
 const eventFields = [
-  { id: "event-name", label: "Event Name", value: "Test Event" },
-  { id: "date", label: "Date", value: "January 10, 2017" },
-  { id: "description", label: "Description", value: "Birthday Mother Fucker" },
+  { id: "event-name", label: "Event Name" },
+  { id: "date", label: "Date" },
+  { id: "description", label: "Description" },
 ];
 
 Template.addEvent.onCreated(function addEventOnCreated() {

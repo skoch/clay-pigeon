@@ -15,7 +15,7 @@ Template.viewEvent.onCreated(function viewEventOnCreated() {
 Template.viewEvent.onRendered(function viewEventOnRendered() {
   console.log( "viewEvent onRendered" );
 
-  $( '#user-list' ).chosen( { width: '100%' } );
+  // $( '#user-list' ).chosen( { width: '100%' } );
 });
 
 Template.viewEvent.helpers({
@@ -55,7 +55,7 @@ Template.viewEvent.events({
     //   console.log( "error, result", error, result );
     //   if( ! error )
     //   {
-    //     // we do not have to add this here because the change occurs as a result of our addition -- attendees helper gets updated ??
+    //     // we do not have to add this here because the change occurs as a result of our addition
     //     // $( '.attendees' ).append( '<button type="button" class="remove-attendee btn btn-success btn-sm" data-id="'+userId+'">'+firstName+' '+lastName+'</button>' );
 
     //     $( '#user-list' ).trigger( 'chosen:updated' );
@@ -75,9 +75,8 @@ Template.viewEvent.events({
     Meteor.call( 'wineclub-users.removeFromEvent', userId, Template.instance().eventId );
 
     // likewise, we don't have to remove this because the db call takes care of this
-    // however, why doesn't the user list update?
     // $( target ).remove();
-    $( '#user-list' ).trigger( 'chosen:updated' );
+    // $( '#user-list' ).trigger( 'chosen:updated' );
   },
 
   'submit form'( event )
