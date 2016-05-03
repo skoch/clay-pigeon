@@ -3,10 +3,10 @@ import { Wine } from '../../api/wine.js';
 import './add-wine.html';
 
 const wineFields = [
-  { id: "name", label: "Name", value: "Some Name" },
-  { id: "vintage", label: "Vintage", value: "2014" },
-  { id: "style", label: "Style", value: "Pinot" },
-  { id: "bottle-price", label: "Bottle Price", value: "25" },
+  { id: "name", label: "Name" },
+  { id: "vintage", label: "Vintage" },
+  { id: "style", label: "Style" },
+  { id: "bottle-price", label: "Bottle Price" },
 ];
 
 Template.addWine.onCreated(function addWineOnCreated() {
@@ -15,7 +15,7 @@ Template.addWine.onCreated(function addWineOnCreated() {
 
 Template.addWine.onRendered(function addWineOnRendered() {
   console.log( "addWine onRendered" );
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 });
 
 Template.addWine.helpers({
@@ -34,13 +34,13 @@ Template.addWine.events({
     $.each( wineFields, function( index, val )
     {
       let input = $( '#' + val.id );
-      let inputDiv = input.parent( '.input' );
-      inputDiv.removeClass( 'error' );
+      let formGroup = input.parent( '.form-group' );
+      formGroup.removeClass( 'has-error' );
 
       if( input.val() == '' )
       {
         console.log( "error at", input );
-        inputDiv.addClass( 'error' );
+        formGroup.addClass( 'has-error' );
 
         isError = true;
       }else

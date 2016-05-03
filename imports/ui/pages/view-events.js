@@ -9,7 +9,7 @@ Template.viewEvents.onCreated(function viewEventsOnCreated() {
 Template.viewEvents.onRendered(function viewEventsOnRendered() {
   console.log( "viewEvents onRendered" );
 
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 
 });
 

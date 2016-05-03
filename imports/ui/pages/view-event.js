@@ -8,7 +8,7 @@ Template.viewEvent.onCreated(function viewEventOnCreated() {
   console.log( "viewEvent onCreated" );
 
   this.attendeeIds = new ReactiveVar();
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
   this.eventId = FlowRouter.current().params._id;
 });
 

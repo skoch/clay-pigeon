@@ -1,13 +1,13 @@
-Template.registerHelper( 'updateNav', ( routeName ) => {
-  console.log( "routeName", routeName );
+// Template.registerHelper( 'updateNav', ( routeName ) => {
+//   console.log( "routeName", routeName );
 
-  $( '.tab' ).each( function( index, el )
-  {
-    $( this ).removeClass( 'active' );
-  });
+//   $( '.tab' ).each( function( index, el )
+//   {
+//     $( this ).removeClass( 'active' );
+//   });
 
-  $( '.' + routeName ).addClass( 'active' );
-});
+//   $( '.' + routeName ).addClass( 'active' );
+// });
 
 Template.registerHelper( 'arrayify',( obj ) => {
   result = [];

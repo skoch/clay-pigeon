@@ -9,7 +9,7 @@ Template.viewWines.onCreated(function viewWinesOnCreated() {
 Template.viewWines.onRendered(function viewWinesOnRendered() {
   console.log( "viewWines onRendered" );
 
-  Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
+  // Blaze._globalHelpers.updateNav( FlowRouter.getRouteName() );
 
 });
 
