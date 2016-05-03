@@ -4,6 +4,7 @@ import './view-wines.html';
 
 Template.viewWines.onCreated(function viewWinesOnCreated() {
   console.log( "viewWines onCreated" );
+  Meteor.subscribe( 'wine' );
 });
 
 Template.viewWines.onRendered(function viewWinesOnRendered() {

@@ -4,6 +4,8 @@ import './view-events.html';
 
 Template.viewEvents.onCreated(function viewEventsOnCreated() {
   console.log( "viewEvents onCreated" );
+  Meteor.subscribe( 'events' );
+  Meteor.subscribe( 'wineclub-users' );
 });
 
 Template.viewEvents.onRendered(function viewEventsOnRendered() {

@@ -4,6 +4,8 @@ import './view-users.html';
 
 Template.viewUsers.onCreated(function viewUsersOnCreated() {
   console.log( "viewUsers onCreated" );
+
+  Meteor.subscribe( 'wineclub-users' );
 });
 
 Template.viewUsers.onRendered(function viewUsersOnRendered() {
