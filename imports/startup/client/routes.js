@@ -108,7 +108,7 @@ FlowRouter.route('/u/:_id', {
   name: 'view-user',
   triggersEnter( context, redirect, stop ) {
     var user = Users.findOne( context.params._id );
-    // console.log( "user", user );
+    console.log( "user", user );
     if( ! user )
     {
       redirect( '/view-users' );
@@ -182,6 +182,11 @@ FlowRouter.route('/e/:_id', {
       stop();
     }
   },
+  triggersExit( context, redirect ) {
+    // hack to remove the Chosen dropdown from the DOM
+    // $( '#user-list' ).chosen( 'destroy' );
+    $( '#user_list_chzn' ).remove();
+  }
 });
 
 FlowRouter.notFound = {
