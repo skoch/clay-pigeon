@@ -22,7 +22,8 @@ reactive-dict
 kadira:flow-router
 kadira:blaze-layout
 accounts-password
-accounts-ui
 easy:search
 jabbslad:basic-auth
 twbs:bootstrap
+accounts-ui-unstyled
+alanning:roles

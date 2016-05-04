@@ -22,6 +22,22 @@ import '../../ui/pages/view-events.js';
 // 404
 import '../../ui/pages/page-not-found.js';
 
+var admin = FlowRouter.group({
+  prefix: '/admin',
+  name: 'admin',
+  triggersEnter: [function( context, redirect ){
+      console.log('ADMIN PAGES');
+      // Meteor.user();
+    }],
+});
+
+admin.route('/register', {
+  name: 'home',
+  action() {
+    BlazeLayout.render( 'appBody', { main: 'register' } );
+  }
+});
+
 // var exposed = FlowRouter.group({});
 
 // exposed.route('/login', {
