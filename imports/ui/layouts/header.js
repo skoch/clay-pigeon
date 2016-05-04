@@ -13,6 +13,13 @@ Template.header.helpers({
     return FlowRouter.getRouteName();
   },
 
+  isAdmin() {
+    console.log( "Meteor.user().profile.isAdmin", Meteor.user().profile.isAdmin );
+    const user = Meteor.user();
+    return user && Meteor.user().profile.isAdmin;
+    // return user && Roles.userIsInRole( user, ['admin'], 'default-group' );
+  },
+
 });
 
 Template.header.events({

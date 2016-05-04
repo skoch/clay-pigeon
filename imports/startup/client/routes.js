@@ -25,16 +25,23 @@ import '../../ui/pages/page-not-found.js';
 var admin = FlowRouter.group({
   prefix: '/admin',
   name: 'admin',
-  triggersEnter: [function( context, redirect ){
-      console.log('ADMIN PAGES');
-      // Meteor.user();
-    }],
+  // triggersEnter: [function( context, redirect, stop ){
+  //   const loggedInUser = Meteor.user();
+  //   console.log( "loggedInUser", loggedInUser );
+  //   if( loggedInUser && Roles.userIsInRole( loggedInUser, ['admin'], 'default-group' ) )
+  //   {
+  //   }
+  // }],
 });
 
 admin.route('/register', {
-  name: 'home',
+  name: 'register',
+  // triggersEnter( context, redirect ){
+  //   const loggedInUser = Meteor.user();
+  //   console.log( "loggedInUser", loggedInUser );
+  // },
   action() {
-    BlazeLayout.render( 'appBody', { main: 'register' } );
+    BlazeLayout.render( 'appBody', { top: 'header', main: 'register' } );
   }
 });
 
