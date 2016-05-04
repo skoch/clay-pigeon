@@ -8,6 +8,7 @@ import { Events } from '../../api/events.js';
 import '../../ui/layouts/app-body.js';
 import '../../ui/layouts/header.js';
 import '../../ui/pages/login.js';
+import '../../ui/pages/register.js';
 import '../../ui/pages/add-user.js';
 import '../../ui/pages/view-user.js';
 import '../../ui/pages/view-users.js';
@@ -66,6 +67,13 @@ import '../../ui/pages/page-not-found.js';
 //     redirect( '/' );
 //   }
 // };
+
+// FlowRouter.route('/login', {
+//   name: 'login',
+//   action() {
+//     BlazeLayout.render( 'appBody', { main: 'login' } );
+//   },
+// });
 
 FlowRouter.route('/', {
   name: 'home',

@@ -15,6 +15,7 @@ Template.appBody.onRendered(function appBodyOnRendered() {
 Template.appBody.helpers({
   isLoggedIn() {
     // return Meteor.userId();
+    console.log( "Meteor.user()", Meteor.user() );
     return !!Meteor.user();
   },
 

@@ -9,9 +9,15 @@ Template.header.onRendered(function headerOnRendered() {
 });
 
 Template.header.helpers({
-  pageName()
-  {
+  pageName() {
     return FlowRouter.getRouteName();
   },
 
+});
+
+Template.header.events({
+  'click .logout'( event ) {
+    event.preventDefault();
+    Meteor.logout();
+  }
 });

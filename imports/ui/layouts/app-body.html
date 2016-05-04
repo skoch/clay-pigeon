@@ -1,16 +1,29 @@
 <template name="appBody">
+
   <div class="container">
+  {{ #if currentUser }}
+    {{ > Template.dynamic template=top }}
+    <div class="row" style="margin-top:51px">
+      <div class="col-md-12">
+      {{ > Template.dynamic template=main }}
+      </div>
+    </div>
+  {{ else }}
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <!-- {{ > register }} -->
+      {{ > login }}
+      </div>
+    </div>
+  {{ /if }}
+  </div>
+
+  <!-- <div class="container">
   {{ > Template.dynamic template=top }}
     <div class="row" style="margin-top:51px">
       <div class="col-md-12">
       {{ > Template.dynamic template=main }}
       </div>
     </div>
-  </div>
-</template>
-
-<template name="mainContent">
-  <div class="container-medium">
-
-  </div>
+  </div> -->
 </template>

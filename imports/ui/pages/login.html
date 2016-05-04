@@ -1,35 +1,19 @@
 <template name="login">
 
-  <h1 class="text-huge text-gray align-center">Login</h1>
+  <h2>Login</h2>
 
-  <div class="tabs">
-    <a href="#" title="Login" class="tab">{{ > loginButtons }}</a>
-  </div>
+  <form>
 
-  <!--
-  <div class="container-small">
-    <div class="row">
-      <div class="col-md-12">
-
-        <form id="login">
-          <label class="label" for="login-username">User Name</label>
-          <div class="input full-width">
-            <input id="login-username" name="login-username" type="text">
-          </div>
-
-          <label class="label" for="login-password">Password</label>
-          <div class="input full-width">
-            <input id="login-password" name="login-password" type="text">
-          </div>
-
-          <input class="button button-primary button-big block-mobile" type="submit" value="Login">
-
-          <p id="form-messages"></p>
-        </form>
-
-      </div>
+    <div class="form-group">
+      <input id="loginUserName" name="loginUserName" type="text" class="form-control" placeholder="User Name">
     </div>
-  </div>
-  -->
+
+    <div class="form-group">
+      <input id="loginPassword" name="loginPassword" type="password" class="form-control" placeholder="Password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+  </form>
 
 </template>
