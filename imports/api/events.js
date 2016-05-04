@@ -53,15 +53,15 @@ Meteor.methods({
     //   throw new Meteor.Error( 'not-authorized' );
     // }
 
-    // Events.update( eventId, {
-    //   $set: {
-    //     name: wineData[0],
-    //     vintage: wineData[1],
-    //     style: wineData[2],
-    //     bottlePrice: wineData[3],
-    //     updatedAt: new Date(),
-    //   }
-    // });
+    Events.update( eventId, {
+      $set: {
+        name: wineData[0],
+        vintage: wineData[1],
+        style: wineData[2],
+        bottlePrice: wineData[3],
+        updatedAt: new Date(),
+      }
+    });
   },
 
   'events.remove'( eventId )

@@ -22,6 +22,29 @@ import '../../ui/pages/view-events.js';
 // 404
 import '../../ui/pages/page-not-found.js';
 
+var admin = FlowRouter.group({
+  prefix: '/admin',
+  name: 'admin',
+  // triggersEnter: [function( context, redirect, stop ){
+  //   const loggedInUser = Meteor.user();
+  //   console.log( "loggedInUser", loggedInUser );
+  //   if( loggedInUser && Roles.userIsInRole( loggedInUser, ['admin'], 'default-group' ) )
+  //   {
+  //   }
+  // }],
+});
+
+admin.route('/register', {
+  name: 'register',
+  // triggersEnter( context, redirect ){
+  //   const loggedInUser = Meteor.user();
+  //   console.log( "loggedInUser", loggedInUser );
+  // },
+  action() {
+    BlazeLayout.render( 'appBody', { top: 'header', main: 'register' } );
+  }
+});
+
 // var exposed = FlowRouter.group({});
 
 // exposed.route('/login', {
