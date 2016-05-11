@@ -4,6 +4,7 @@ import './view-user.html';
 
 Template.viewUser.onCreated(function viewUserOnCreated() {
   console.log( "viewUser onCreated" );
+  // Meteor.subscribe( 'wineclub-users' );
 });
 
 Template.viewUser.onRendered(function viewUserOnRendered() {
@@ -12,7 +13,14 @@ Template.viewUser.onRendered(function viewUserOnRendered() {
 });
 
 Template.viewUser.helpers({
-
+  // user( id ) {
+  //   return Users.findOne( id );
+  // },
+  // firstName( id ) {
+  //   console.log( "firstName ***************" );
+  //   var user = Users.findOne( id );
+  //   return user.firstName;
+  // },
 });
 
 Template.viewUser.events({
@@ -30,7 +38,7 @@ Template.viewUser.events({
       let inputDiv = input.parent( '.input' );
       inputDiv.removeClass( 'error' );
 
-      if( input.val() == '')
+      if( input.val() == '' )
       {
         console.log( "error at", input );
         inputDiv.addClass( 'error' );

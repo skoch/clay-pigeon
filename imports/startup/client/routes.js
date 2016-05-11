@@ -22,124 +22,82 @@ import '../../ui/pages/view-events.js';
 // 404
 import '../../ui/pages/page-not-found.js';
 
-var admin = FlowRouter.group({
-  prefix: '/admin',
-  name: 'admin',
-  // triggersEnter: [function( context, redirect, stop ){
-  //   const loggedInUser = Meteor.user();
-  //   console.log( "loggedInUser", loggedInUser );
-  //   if( loggedInUser && Roles.userIsInRole( loggedInUser, ['admin'], 'default-group' ) )
-  //   {
-  //   }
-  // }],
+function checkLoggedIn( ctx, redirect )
+{
+  console.log( "checkLoggedIn", ctx );
+  if( ! Meteor.userId() )
+  {
+    console.log( "redirect" );
+    redirect( '/' );
+  }
+}
+
+function redirectIfLoggedIn( ctx, redirect )
+{
+  console.log( "redirectIfLoggedIn" );
+  if( Meteor.userId() )
+  {
+    redirect( '/view-wines' );
+  }
+}
+
+// ----------------- public
+var public = FlowRouter.group({
+  name: 'public',
+  triggersEnter: [redirectIfLoggedIn]
 });
 
-admin.route('/register', {
+public.route('/', {
+  name: 'home',
+  action() {
+    BlazeLayout.render( 'appBody', { main: 'login' } );
+  },
+});
+
+// ----------------- private
+var private = FlowRouter.group({
+  name: 'private',
+  triggersEnter: [checkLoggedIn]
+});
+
+private.route('/view-wines', {
+  name: 'view-wines',
+  action() {
+    BlazeLayout.render( 'appBody', { top: 'header', main: 'viewWines' } );
+  },
+});
+
+private.route('/register', {
   name: 'register',
-  // triggersEnter( context, redirect ){
-  //   const loggedInUser = Meteor.user();
-  //   console.log( "loggedInUser", loggedInUser );
-  // },
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'register' } );
   }
 });
 
-// var exposed = FlowRouter.group({});
-
-// exposed.route('/login', {
-//   name: 'home',
-//   action() {
-//     BlazeLayout.render( 'appBody', { main: 'login' } );
-//   }
-// });
-
-// var loggedin = FlowRouter.group({
-//   prefix: '/admin',
-//   name: 'admin',
-//   triggersEnter: [function(context, redirect) {
-//     console.log('running group triggers');
-//   }]
-// });
-
-// Tracker.autorun(function() {
-//   FlowRouter.watchPathChange();
-//   var context = FlowRouter.current();
-//   console.log( "context", context );
-//   // use context to access the URL state
-
-//   if( context.path )
-//   {
-//     $( '.tab' ).each( function( index, el )
-//     {
-//       $( this ).removeClass( 'active' );
-//     });
-
-//     var routeName = context.path.substring( 1 );
-//     console.log( "routeName", routeName );
-//     $( '.' + routeName ).addClass( 'active' );
-//   }
-// });
-
-// FlowRouter.triggers.enter( [checkLoginState], { except: ['home'] } );
-
-// function checkLoginState( context, redirect )
-// {
-//   if( ! Meteor.userId() )
-//   {
-//     redirect( '/' );
-//   }
-// };
-
-// FlowRouter.route('/login', {
-//   name: 'login',
-//   action() {
-//     BlazeLayout.render( 'appBody', { main: 'login' } );
-//   },
-// });
-
-FlowRouter.route('/', {
-  name: 'home',
-  triggersEnter( context, redirect ){
-    redirect( '/view-wines' );
-  },
-  // triggersEnter: [function( context, redirect ) {
-  //   redirect( '/view-users' );
-  // }],
-  // action( _params ) {
-  //   throw new Error("this should not get called");
-  // }
-  // action() {
-  //   if( Meteor.userId() )
-  //   {
-  //     redirect( '/view-users' );
-  //   }else
-  //   {
-  //     BlazeLayout.render( 'appBody', { main: 'login' } );
-  //   }
-  //   BlazeLayout.render( 'appBody', { top: 'header', main: 'view-users' } );
-  // },
-});
-
-FlowRouter.route('/add-user', {
+private.route('/add-user', {
   name: 'add-user',
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'addUser' } );
   },
 });
 
-FlowRouter.route('/view-users', {
+private.route('/view-users', {
   name: 'view-users',
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUsers' } );
   },
 });
 
-FlowRouter.route('/u/:_id', {
+private.route('/u/:_id', {
   name: 'view-user',
+  // action( params ) {
+  //   BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUser', id: params._id } );
+  // },
   triggersEnter( context, redirect, stop ) {
+
+    // BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUser', id: context.params._id } );
+
     var user = Users.findOne( context.params._id );
-    console.log( "user", user );
     if( ! user )
     {
       redirect( '/view-users' );
@@ -149,27 +107,24 @@ FlowRouter.route('/u/:_id', {
       stop();
     }
   },
-  // action( params ) {
-  //   console.log( "We don't even need this? _id", params._id );
-  //   // BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUser', user: user } );
-  // },
+
 });
 
-FlowRouter.route('/add-wine', {
+private.route('/add-wine', {
   name: 'add-wine',
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'addWine' } );
   },
 });
 
-FlowRouter.route('/view-wines', {
+private.route('/view-wines', {
   name: 'view-wines',
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewWines' } );
   },
 });
 
-FlowRouter.route('/w/:_id', {
+private.route('/w/:_id', {
   name: 'view-wine',
   triggersEnter( context, redirect, stop ) {
     var wine = Wine.findOne( context.params._id );
@@ -185,7 +140,7 @@ FlowRouter.route('/w/:_id', {
   },
 });
 
-FlowRouter.route('/add-event', {
+private.route('/add-event', {
   name: 'add-event',
   action() {
     // var users = Users.find();
@@ -193,14 +148,14 @@ FlowRouter.route('/add-event', {
   },
 });
 
-FlowRouter.route('/view-events', {
+private.route('/view-events', {
   name: 'view-events',
   action() {
     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewEvents' } );
   },
 });
 
-FlowRouter.route('/e/:_id', {
+private.route('/e/:_id', {
   name: 'view-event',
   triggersEnter( context, redirect, stop ) {
     var event = Events.findOne( context.params._id );
@@ -213,12 +168,158 @@ FlowRouter.route('/e/:_id', {
       stop();
     }
   },
-  triggersExit( context, redirect ) {
-    // hack to remove the Chosen dropdown from the DOM
-    // $( '#user-list' ).chosen( 'destroy' );
-    $( '#user_list_chzn' ).remove();
-  }
+  // triggersExit( context, redirect ) {
+  //   // hack to remove the Chosen dropdown from the DOM
+  //   // $( '#user-list' ).chosen( 'destroy' );
+  //   $( '#user_list_chzn' ).remove();
+  // }
 });
+// --------------------------------------------
+
+// var admin = FlowRouter.group({
+//   prefix: '/admin',
+//   name: 'admin',
+//   // triggersEnter: [function( context, redirect, stop ){
+//   //   const loggedInUser = Meteor.user();
+//   //   console.log( "loggedInUser", loggedInUser );
+//   //   if( loggedInUser && Roles.userIsInRole( loggedInUser, ['admin'], 'default-group' ) )
+//   //   {
+//   //   }
+//   // }],
+// });
+
+// admin.route('/register', {
+//   name: 'register',
+//   // triggersEnter( context, redirect ){
+//   //   const loggedInUser = Meteor.user();
+//   //   console.log( "loggedInUser", loggedInUser );
+//   // },
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'register' } );
+//   }
+// });
+
+// FlowRouter.route('/', {
+//   name: 'home',
+//   triggersEnter( context, redirect ){
+//     redirect( '/view-wines' );
+//   },
+//   // triggersEnter: [function( context, redirect ) {
+//   //   redirect( '/view-users' );
+//   // }],
+//   // action( _params ) {
+//   //   throw new Error("this should not get called");
+//   // }
+//   // action() {
+//   //   if( Meteor.userId() )
+//   //   {
+//   //     redirect( '/view-users' );
+//   //   }else
+//   //   {
+//   //     BlazeLayout.render( 'appBody', { main: 'login' } );
+//   //   }
+//   //   BlazeLayout.render( 'appBody', { top: 'header', main: 'view-users' } );
+//   // },
+// });
+
+// FlowRouter.route('/add-user', {
+//   name: 'add-user',
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'addUser' } );
+//   },
+// });
+
+// FlowRouter.route('/view-users', {
+//   name: 'view-users',
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUsers' } );
+//   },
+// });
+
+// FlowRouter.route('/u/:_id', {
+//   name: 'view-user',
+//   triggersEnter( context, redirect, stop ) {
+//     var user = Users.findOne( context.params._id );
+//     console.log( "user", user );
+//     if( ! user )
+//     {
+//       redirect( '/view-users' );
+//     }else
+//     {
+//       BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUser', user: user } );
+//       stop();
+//     }
+//   },
+//   // action( params ) {
+//   //   console.log( "We don't even need this? _id", params._id );
+//   //   // BlazeLayout.render( 'appBody', { top: 'header', main: 'viewUser', user: user } );
+//   // },
+// });
+
+// FlowRouter.route('/add-wine', {
+//   name: 'add-wine',
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'addWine' } );
+//   },
+// });
+
+// FlowRouter.route('/view-wines', {
+//   name: 'view-wines',
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewWines' } );
+//   },
+// });
+
+// FlowRouter.route('/w/:_id', {
+//   name: 'view-wine',
+//   triggersEnter( context, redirect, stop ) {
+//     var wine = Wine.findOne( context.params._id );
+//     // console.log( "wine", wine );
+//     if( ! wine )
+//     {
+//       redirect( '/view-wines' );
+//     }else
+//     {
+//       BlazeLayout.render( 'appBody', { top: 'header', main: 'viewWine', wine: wine } );
+//       stop();
+//     }
+//   },
+// });
+
+// FlowRouter.route('/add-event', {
+//   name: 'add-event',
+//   action() {
+//     // var users = Users.find();
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'addEvent' } );
+//   },
+// });
+
+// FlowRouter.route('/view-events', {
+//   name: 'view-events',
+//   action() {
+//     BlazeLayout.render( 'appBody', { top: 'header', main: 'viewEvents' } );
+//   },
+// });
+
+// FlowRouter.route('/e/:_id', {
+//   name: 'view-event',
+//   triggersEnter( context, redirect, stop ) {
+//     var event = Events.findOne( context.params._id );
+//     if( ! event )
+//     {
+//       redirect( '/view-events' );
+//     }else
+//     {
+//       BlazeLayout.render( 'appBody', { top: 'header', main: 'viewEvent', event: event } );
+//       stop();
+//     }
+//   },
+//   triggersExit( context, redirect ) {
+//     // hack to remove the Chosen dropdown from the DOM
+//     // $( '#user-list' ).chosen( 'destroy' );
+//     $( '#user_list_chzn' ).remove();
+//   }
+// });
 
 FlowRouter.notFound = {
   action() {
